@@ -1,6 +1,6 @@
 === Easy Quiz ===
 Contributors: manojtd
-Donate link: http://affiliates.thulasidas.com
+Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, education
 Requires at least: 3.1
 Tested up to: 3.3
@@ -33,7 +33,7 @@ A [pro version](http://buy.thulasidas.com "Pro Version of Eazy Quiz for $2.95") 
 
 == Upgrade Notice ==
 
-Initial release.
+Bug fixes (Fatal error: Call-time pass-by-reference has been removed).
 
 == Installation ==
 
@@ -69,4 +69,6 @@ Publish it and browse to the published page.
 
 == Change Log ==
 
+* V1.20: Bug fixes (Fatal error: Call-time pass-by-reference has been removed). [Jan 30, 2013]
+* V1.10: Adding more features. [Sep 30, 2012]
 * V1.00: Initial release. [Sep 10, 2012]

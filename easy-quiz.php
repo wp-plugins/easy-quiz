@@ -3,7 +3,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/ezquiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No Admin page, no options, just a shortcode on a page to create jQuery quiz!
-  Version: 1.00
+  Version: 1.20
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
 */
@@ -127,9 +127,9 @@ $( "#quizArea" ).jQuizMe( quiz, options, lang );
 if (class_exists("ezQuiz")) {
   $ezQuiz = new EzQuiz() ;
   if (isset($ezQuiz)) {
-    add_shortcode(EzQuiz::shortCode, array(&$ezQuiz, 'displayQuiz')) ;
-    add_action('wp_enqueue_scripts' , array(&$ezQuiz, 'ezqStyles')) ;
-    add_action('wp_enqueue_scripts' , array(&$ezQuiz, 'ezqScripts')) ;
+    add_shortcode(EzQuiz::shortCode, array($ezQuiz, 'displayQuiz')) ;
+    add_action('wp_enqueue_scripts' , array($ezQuiz, 'ezqStyles')) ;
+    add_action('wp_enqueue_scripts' , array($ezQuiz, 'ezqScripts')) ;
     add_filter('the_posts', array("EzQuiz", "findShortCode")) ;
   }
 }
