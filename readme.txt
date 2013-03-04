@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, education
 Requires at least: 3.1
 Tested up to: 3.3
-Stable tag: 1.20
+Stable tag: 2.00
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -17,7 +17,7 @@ All the survey/quiz plugins I found in the directory looked too complex for my p
 
 = Features =
 
-1. No setup other than cutting and pasting your questions on your post.
+1. No setup other than cutting and pasting your questions on to your post.
 2. True or False type questions.
 3. Results without server submit.
 4. View results at any point, and continue the quiz.
@@ -43,7 +43,7 @@ Or,
 1. Upload the Easy Quiz plugin (the whole `easy-quiz` folder) to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in your blog.
 
-To use the plugin, use the shorttage `[ezquiz]`. In other words, enclose your quiz questions between `[ezquiz][/ezquiz]` tags on a page. See the FAQ for an example.
+To use the plugin, use the shorttags `[ezquiz]`. In other words, enclose your quiz questions between `[ezquiz][/ezquiz]` tags on a page. See the FAQ for an example.
 
 == Screenshots ==
 
@@ -53,7 +53,7 @@ To use the plugin, use the shorttage `[ezquiz]`. In other words, enclose your qu
 
 = Why another quiz plugin? =
 
-This plugin is the simplest quiz plugin you can imagine. To use it, you include a set of statements between the shorttags `[ezquiz][/ezquiz]` in a post. The statements will be neatly rendered as a true or false quiz. Note that all the right answers are true! It will change in the near future.
+This plugin is the simplest quiz plugin you can imagine. To use it, you include a set of statements between the shorttags `[ezquiz][/ezquiz]` in a post. The statements will be neatly rendered as a true or false quiz. Note that all the right answers are, by default, true.
 
 = Still not clear how to use it. An example please? =
 
@@ -67,8 +67,39 @@ WordPress is free.
 If you agree with these statements, you are a good man.`
 Publish it and browse to the published page.
 
+This creates a quiz with two true-or-false questions. The answers for both questions are "True".
+
+= A more useful example, perhaps? =
+
+Here we go:
+`This is a quiz about the wonderful WordPress blogging platform.
+[ezquiz]
+title:WordPress is free and priceless
+help: All things good about WordPress
+q: WordPress is priceless.
+a: true
+q: WordPress is free.
+a: true
+q: WordPress is worthless.
+a: false
+[/ezquiz]
+If you agree with these statements, you are a good man.`
+
+= A little explanation of the example will help. =
+
+Each line within the `[ezquiz]...[/ezquiz]` block contains a label (like `title:`) and some text. It may be easiest to cut and paste the example above on a test page and see how it is rendered.
+
+The label `title:` lets you specify a title for your quiz page. If you don't specify it, the title defaults to *"Easy Quiz"*.
+
+The `help:` label is a little help text to your readers. Its default value is *"Choose True or False. At the end of the quiz, you will get your score."*
+
+The label `q:` (or `ques:` or `question:`) is optional. It is to specify a question. You could just give statements, which will be rendered as questions.
+
+The answer (with a label `a:` or `ans:` or `answer:`) is optional as well. If you don't give an answer, it is assumed to be *true*. In other words, the question statement is assumed to be true. The possible values are *true* or *false* (in lowercase).
+
 == Change Log ==
 
+* V2.00: Major improvements. [Mar 5, 2013]
 * V1.20: Bug fixes (Fatal error: Call-time pass-by-reference has been removed). [Jan 30, 2013]
 * V1.10: Adding more features. [Sep 30, 2012]
 * V1.00: Initial release. [Sep 10, 2012]
