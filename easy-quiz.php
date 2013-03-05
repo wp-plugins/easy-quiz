@@ -4,7 +4,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/ezquiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No Admin page, no options, just a shortcode on a page to create jQuery quiz!
-  Version: 2.00
+  Version: 2.01
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -69,7 +69,6 @@ if (class_exists("ezQuiz")) {
       $lines[] = 'q: last' ; // to write out the last question
       $question = '' ;
       $answer = sprintf('ans: true') ;
-      $quizType = 'quizType: "tf"' ;
       $title = "title: \"Easy Quiz\",";
       $help = "help: \"Choose True or False. At the end of the quiz, you will get your score.\",";
       $quiz = '<div id="quizArea">
@@ -93,7 +92,7 @@ var quiz = [';
             case 'q':
             case 'ques' :
             case 'question':
-              if (!empty($question)) { // ouput the previous question
+              if (!empty($question)) { // output the previous question
                 $quiz .= "$comma{ $question $answer }";
                 $comma = ',';
                 $question = '' ;
@@ -112,8 +111,6 @@ var quiz = [';
             case 'help' :
               $help = sprintf('help: "%s",', $rest) ;
               break;
-            case 'type' :
-              $quizType = sprintf('quizType: "%s",', $rest) ;
             default:
           }
         }
@@ -128,7 +125,7 @@ var options = {
 %s
 showAns: false,
 showAnsInfo: false,
-%s
+quizType: "tf"
 };
 var lang = {
 quiz : {
@@ -139,7 +136,7 @@ $( "#quizArea" ).jQuizMe( quiz, options, lang );
 });
 })
 </script>
-</div>', $title, $help, $quizType);
+</div>', $title, $help);
       return $quiz;
     }
 

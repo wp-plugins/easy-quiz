@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, education
 Requires at least: 3.1
 Tested up to: 3.3
-Stable tag: 2.00
+Stable tag: 2.01
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -17,23 +17,24 @@ All the survey/quiz plugins I found in the directory looked too complex for my p
 
 = Features =
 
-1. No setup other than cutting and pasting your questions on to your post.
-2. True or False type questions.
-3. Results without server submit.
+1. No setup required.
+2. Just cut and paste your questions on to your post.
+3. Results without server submit -- all the work is done on your readers' machine.
 4. View results at any point, and continue the quiz.
+5. Detailed help on the admin page. (WIP)
 
 = Pro Version =
 
-A [pro version](http://buy.thulasidas.com "Pro Version of Eazy Quiz for $2.95") of this plugin is in the works with the following added features:
+A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz for $2.95") of this plugin is in the works with the following added features:
 
 1. Color customization to match your theme.
-2. Per quiz color overrides.
-3. More quiz types (multiple choice, fill in the blanks etc.)
-4. Other quiz options from the core JS exposed in the admin page and as short code options.
+2. More quiz types (Multiple Choice, Fill in The blanks etc.) as short code options
+3. Mix and match different types of questions: Multiple Choice, Fill in the Blancs, True or False etc. in the same quiz!
+4. Other quiz options as short code options.
 
 == Upgrade Notice ==
 
-Bug fixes (Fatal error: Call-time pass-by-reference has been removed).
+Documentation changes and code cleanup.
 
 == Installation ==
 
@@ -99,6 +100,7 @@ The answer (with a label `a:` or `ans:` or `answer:`) is optional as well. If yo
 
 == Change Log ==
 
+* V2.01: Documentation changes and code cleanup. [Man 6, 2013]
 * V2.00: Major improvements. [Mar 5, 2013]
 * V1.20: Bug fixes (Fatal error: Call-time pass-by-reference has been removed). [Jan 30, 2013]
 * V1.10: Adding more features. [Sep 30, 2012]
