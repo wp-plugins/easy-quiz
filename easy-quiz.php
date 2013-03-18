@@ -4,7 +4,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/ezquiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No Admin page, no options, just a shortcode on a page to create jQuery quiz!
-  Version: 2.01
+  Version: 2.02
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -134,7 +134,7 @@ tfEqual:""
 };
 $( "#quizArea" ).jQuizMe( quiz, options, lang );
 });
-})
+}(jQuery))
 </script>
 </div>', $title, $help);
       return $quiz;

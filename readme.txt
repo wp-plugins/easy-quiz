@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, education
 Requires at least: 3.1
 Tested up to: 3.3
-Stable tag: 2.01
+Stable tag: 2.02
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -34,7 +34,7 @@ A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz fo
 
 == Upgrade Notice ==
 
-Documentation changes and code cleanup.
+Minor fix to potential incompatibility.
 
 == Installation ==
 
@@ -100,6 +100,7 @@ The answer (with a label `a:` or `ans:` or `answer:`) is optional as well. If yo
 
 == Change Log ==
 
+* V2.02: Minor fix to potential incompatibility. [Mar 18, 2013]
 * V2.01: Documentation changes and code cleanup. [Man 6, 2013]
 * V2.00: Major improvements. [Mar 5, 2013]
 * V1.20: Bug fixes (Fatal error: Call-time pass-by-reference has been removed). [Jan 30, 2013]
