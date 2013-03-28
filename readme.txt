@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, education
 Requires at least: 3.1
 Tested up to: 3.3
-Stable tag: 2.02
+Stable tag: 3.00
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -41,6 +41,7 @@ Minor fix to potential incompatibility.
 You can install it using the WordPress Plugins -> Add New interface.
 
 Or,
+
 1. Upload the Easy Quiz plugin (the whole `easy-quiz` folder) to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in your blog.
 
@@ -59,6 +60,7 @@ This plugin is the simplest quiz plugin you can imagine. To use it, you include 
 = Still not clear how to use it. An example please? =
 
 Create a new post on your test blog with the following content.
+
 `This is a quiz about the wonderful WordPress blogging platform.
 [ezquiz]
 title:WordPress is free and priceless
@@ -66,6 +68,7 @@ WordPress is priceless.
 WordPress is free.
 [/ezquiz]
 If you agree with these statements, you are a good man.`
+
 Publish it and browse to the published page.
 
 This creates a quiz with two true-or-false questions. The answers for both questions are "True".
@@ -73,6 +76,7 @@ This creates a quiz with two true-or-false questions. The answers for both quest
 = A more useful example, perhaps? =
 
 Here we go:
+
 `This is a quiz about the wonderful WordPress blogging platform.
 [ezquiz]
 title:WordPress is free and priceless
@@ -100,6 +104,7 @@ The answer (with a label `a:` or `ans:` or `answer:`) is optional as well. If yo
 
 == Change Log ==
 
+* V3.00: Major feature: admin page with help info. [Mar 27, 2013]
 * V2.02: Minor fix to potential incompatibility. [Mar 18, 2013]
 * V2.01: Documentation changes and code cleanup. [Man 6, 2013]
 * V2.00: Major improvements. [Mar 5, 2013]
