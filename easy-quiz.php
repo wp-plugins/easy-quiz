@@ -2,9 +2,9 @@
 
 /*
   Plugin Name: Easy Quiz
-  Plugin URI: http://www.thulasidas.com/plugins/ezquiz
-  Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No Admin page, no options, just a shortcode on a page to create jQuery quiz!
-  Version: 3.00
+  Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
+  Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
+  Version: 3.01
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -14,7 +14,7 @@
   Copyright (C) 2008 www.thulasidas.com
  */
 
-if (class_exists("ezQuiz")) {
+if (class_exists("EzQuiz")) {
   // Another version is probably installed. Ask the user to deactivate it.
   die(__("<strong><em>Easy Quiz:</em></strong> Another version of this plugin is active.<br />Please deactivate it before activating <strong><em>Easy Quiz</em></strong>.", "easy-adsenser"));
 } else {
@@ -27,7 +27,7 @@ if (class_exists("ezQuiz")) {
 
     static $quizPage;
 
-    function ezQuiz() { //constructor
+    function EzQuiz() { //constructor
       $this->plgURL = plugins_url(basename(dirname(__FILE__)));
     }
 
@@ -158,27 +158,27 @@ $( "#quizArea" ).jQuizMe( quiz, options, lang );
 <!--  Help Info here -->
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>
-<a href="#" title="Click for help" onclick="TagToTip('help0',WIDTH, 450, TITLE, 'How to Set it up', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
+<a href="#" title="Click for help" onclick="TagToTip('help0',WIDTH, 450, TITLE, 'How to Use it', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
 How to use this plugin?
 </a>
 </li>
 <li>
-<a href="#" title="Click for help" onclick="TagToTip('help1',WIDTH, 450, TITLE, 'How to Set it up', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
-Working exmples.
+<a href="#" title="Click for help" onclick="TagToTip('help1',WIDTH, 450, TITLE, 'Working Examples', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
+Working examples.
 </a>
 </li>
 <li>
-<a href="#" title="Click for help" onclick="TagToTip('help2',WIDTH, 450, TITLE, 'How to Set it up', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
+<a href="#" title="Click for help" onclick="TagToTip('help2',WIDTH, 450, TITLE, 'Details on Options', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
 More detailed explanation of the options.
 </a>
 </li>
 <li>
-<a href="#" title="Click for help" onclick="TagToTip('help3',WIDTH, 450, TITLE, 'How to Set it up', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
+<a href="#" title="Click for help" onclick="TagToTip('help3',WIDTH, 450, TITLE, 'Types of Quizes', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
 What types of questions can I give?
 </a>
 </li>
 <li>
-<a href="#" title="Click for help" onclick="TagToTip('help4',WIDTH, 450, TITLE, 'How to Set it up', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
+<a href="#" title="Click for help" onclick="TagToTip('help4',WIDTH, 450, TITLE, 'Color Customization', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
 How can I change the colors?
 </a>
 </li>
@@ -284,9 +284,9 @@ It also uses the excellent Javascript/DHTML tooltips by <a href="http://www.walt
 EOF3;
     }
   }
-} //End Class ezQuiz
+} //End Class EzQuiz
 
-if (class_exists("ezQuiz")) {
+if (class_exists("EzQuiz")) {
   $ezQuiz = new EzQuiz();
   if (isset($ezQuiz)) {
     add_shortcode(EzQuiz::shortCode, array($ezQuiz, 'displayQuiz'));
