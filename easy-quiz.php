@@ -4,7 +4,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
-  Version: 3.01
+  Version: 3.10
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -152,9 +152,8 @@ $( "#quizArea" ).jQuizMe( quiz, options, lang );
 <script type="text/javascript" src="{$this->plgURL}/wz_tooltip.js"></script>
 <div class="wrap" style="width:810px">
 <h2>Easy Quiz Help</h2>
-</th></tr>
 <table>
-<tr><td width="40%">
+<tr><td style="width:40%">
 <!--  Help Info here -->
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>
@@ -189,19 +188,17 @@ EOF1;
       echo <<<EOF2
 </tr>
 <tr>
-<td colspan="3">
+<td colspan="3" style="text-align:center;">
 <hr />
-<center>
 <p>In the Pro version, this section will have color pickers and a quiz preview to customize your quiz display.<p>
 <button onclick="Tip('&lt;img src=&quot;{$this->plgURL}/screenshot-2.png&quot; /&gt;', WIDTH, 810, TITLE, 'Pro Version Screenshot',STICKY, 1, CLOSEBTN, true, FIX, [this, -350, -20])">Show Pro Screenshot</button>
-</center>
 </td></tr>
 </table>
 <hr />
-<span id="help0">
+<div id="help0" style='display:none;'>
 You use the plugin with the help of short tags. You create a post or page with a set of statements between the short tags <code>[ezquiz][ezquiz]</code>. The statements will be neatly rendered as a true or false quiz. Note that all the right answers are, by default, true.
-</span>
-<span id="help1">
+</div>
+<div id="help1" style='display:none;'>
 Here is a simple example of the quiz (the one that generates the preview quiz on this admin page if you are using the Pro version):
 <pre><code>This is a quiz about the wonderful WordPress blogging platform.
 [ezquiz]
@@ -223,15 +220,15 @@ q: WordPress is worthless.
 a: false
 [ezquiz]
 If you agree with these statements, you are a good man.</code></pre>
-</span>
-<span id="help2">
+</div>
+<div id="help2" style='display:none;'>
 <p>Each line within the <code>[ezquiz]..[/ezquiz]</code> block contains a label (like <code>title:</code>) and some text. It may be easiest to cut and paste the example above on a test page and see how it is rendered.</p>
 <p>The label <code>title:</code> lets you specify a title for your quiz page. If you don't specify it, the title defaults to <em>"Easy Quiz"</em>.</p>
 <p>The <code>help:</code> label is a little help text to your readers. Its default value is <em>"Choose True or False. At the end of the quiz, you will get your score."</em></p>
 <p>The label <code>q:</code> (or <code>ques:</code> or <code>question:</code>) is optional. It is to specify a question. You could just give statements, which will be rendered as questions.</p>
 <p>The answer (with a label <code>a:</code> or <code>ans:</code> or <code>answer:</code>) is optional as well. If you don't give an answer, it is assumed to be <em>true</em>. In other words, the question statement is assumed to be true. The possible values are <em>true</em> or <em>false</em> (in lowercase).</p>
-</span>
-<span id="help3">
+</div>
+<div id="help3" style='display:none;'>
 <p>In the Pro version, you can change the type of question by giving a label <code>type:</code>. The possible values are:</p>
 <ul>
 <li><code>flash:</code> (or <code>flashCard:</code>) A basic flash card game. Questions are shown, then answers.
@@ -246,14 +243,14 @@ If you agree with these statements, you are a good man.</code></pre>
 <code>multiList:</code> (or <code>multipleChoiceOl:</code>) Multiple choice quiz with all answers listed (using the <code>&lt;ol&gt;&lt;li&gt;</code> tags).
 </li>
 <li>
-<code>tf:</code> (or <code>trueOrFalse:</code>) [Default] True or false with radiobuttons (using <code>&lt;input type=radio/&gt;</code> tags).</p>
+<code>tf:</code> (or <code>trueOrFalse:</code>) [Default] True or false with radiobuttons (using <code>&lt;input type=radio/&gt;</code> tags).
 </li>
 </ul>
-</span>
-<span id="help4">
+</div>
+<div id="help4" style='display:none;'>
 <p>In the Pro version, you can tweak the colors using the color pickers below. You can also see the effect of your color choices right here on the admin screen using a live preview. If you are using the Lite version, please click on the button below to see a screen shot of how it works.</p>
 <p>If you prefer to stay with the Lite version, you can change the quiz colors by editing the style file <code>jQuizMe.css</code> in the plugin folder.</p>
-</span>
+</div>
 EOF2;
       echo '<div style="background-color:#fcf;padding:5px;border: solid 1px;margin:5px;">' ;
       @include (dirname (__FILE__).'/support.php');
@@ -264,7 +261,7 @@ EOF2;
       @include (dirname (__FILE__).'/tail-text.php');
       echo <<<EOF3
 <table>
-<tr><th scope="row"><h3>Credits</h3></th></tr>
+<tr><th scope="row">Credits</th></tr>
 <tr><td>
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>

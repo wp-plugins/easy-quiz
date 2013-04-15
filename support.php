@@ -23,7 +23,7 @@ function renderSupport($name, $plg) {
   $link = '<a href="' . $url . '" target="_blank">' . $value . '</a>' ;
   echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='" ;
   _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser') ;
-  echo "'><img src='$plugindir/ezsupport.png' class='alignright' border='0' alt='ezSupport Portal'/></a>" ;
+  echo "'><img src='$plugindir/ezsupport.png' class='alignright' alt='ezSupport Portal'/></a>" ;
   printf(__("If you need help with %s, please read the FAQ section on the $link page. It may answer all your questions.", 'easy-adsenser'), $value, $link) ;
   echo "<br style='line-height: 20px;'/>" ;
   _e("Or, if you still need help, you can raise a support ticket.", 'easy-adsenser') ;
