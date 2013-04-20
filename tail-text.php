@@ -105,7 +105,8 @@ function popupwindow(url, title, w, h){  var left =(screen.width/2)-(w/2);  var 
 <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
 
 <?php
-  foreach ($myPlugins as $name => $plg) if ($name != $plgName) renderPlg($name, $plg) ;
+  $keys = array_rand($myPlugins, 3);
+  foreach ($keys as $name) if ($name != $plgName) renderPlg($name, $myPlugins[$name]) ;
 ?>
 
 </ul>

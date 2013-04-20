@@ -1,10 +1,10 @@
 === Easy Quiz ===
 Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-quiz
-Tags: quiz, survey, questions, education
+Tags: quiz, survey, questions, education, jquery, jquizme, test, exam, quizzes
 Requires at least: 3.1
-Tested up to: 3.3
-Stable tag: 3.10
+Tested up to: 3.5
+Stable tag: 3.11
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -25,16 +25,16 @@ All the survey/quiz plugins I found in the directory looked too complex for my p
 
 = Pro Version =
 
-A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz for $2.95") of this plugin is in the works with the following added features:
+A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz for $2.95") of this plugin is available with the following added features:
 
 1. Color customization to match your theme.
 2. More quiz types (Multiple Choice, Fill in The blanks etc.) as short code options
-3. Mix and match different types of questions: Multiple Choice, Fill in the Blancs, True or False etc. in the same quiz!
+3. Mix and match different types of questions: Multiple Choice, Fill in the Blanks, True or False etc. in the same quiz!
 4. Other quiz options as short code options.
 
 == Upgrade Notice ==
 
-Correcting W3C markup validation errors on the admin page.
+Documentation changes only.
 
 == Installation ==
 
@@ -104,6 +104,7 @@ The answer (with a label `a:` or `ans:` or `answer:`) is optional as well. If yo
 
 == Change Log ==
 
+* V3.11: Documentation changes only. [Apr 20, 2013]
 * V3.10: Correcting W3C markup validation errors on the admin page. [Apr 14, 2013]
 * V3.01: Minor fixes. [Mar 29, 2013]
 * V3.00: Major feature: admin page with help info. [Mar 27, 2013]

@@ -50,16 +50,17 @@ function renderProText($name, $plg) {
   $desc = $plg['desc'] ;
   $toolTip = $plg['title'] ;
   $price = $plg['price'] ;
+  $popup = "onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\"";
   $moreInfo =
     "&nbsp; <a href='http://buy.thulasidas.com/lite/$name.zip' title='Download the Lite version of $value'>Lite Version </a>" .
-    "&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\">Pro Version</a>" ;
+    "&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price' $popup>Pro Version</a>" ;
   $toolTip .= addslashes('<br />' . $moreInfo) ;
   $why = addslashes($plg['pro']) ;
-  echo '<div style="background-color:#ffcccc;padding:5px;border: solid 1px;text-align:center;">
-<span style="font-size:14px;color:#a48;font-variant: small-caps;text-decoration:underline;text-align:center;" onmouseover="TagToTip(\'pro\', WIDTH, 300, TITLE, \'Buy the Pro Version\',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])"><b>The Pro Version</b></span><br />' ;
+  echo "<div style='background-color:#ffcccc;padding:5px;border: solid 1px;text-align:center;'>
+<span style='font-size:14px;color:#a48;font-variant: small-caps;text-decoration:underline;text-align:center;' $popup onmouseover=\"TagToTip('pro', WIDTH, 300, TITLE, 'Buy the Pro Version',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])\"><b>The Pro Version</b></span><br />" ;
 
   $value .= '<b><i> Lite</i></b>' ;
-  echo "Thank you for using $value. The \"Pro\" version gives you more options$filter. Consider <a href='http://buy.thulasidas.com/$name' title='Pro version of this plugin. Instant download link.'  onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\">buying it</a>. It costs only \$$price." ;
+  echo "Thank you for using $value. The \"Pro\" version gives you more options$filter. Consider <a href='http://buy.thulasidas.com/$name' title='Pro version of this plugin. Instant download link.' $popup>buying it</a>. It costs only \$$price." ;
 
   echo "<div id='pro' style='display:none'>" ;
   renderHeadText($name, $plg) ;

@@ -1,10 +1,9 @@
 <?php
-
 /*
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
-  Version: 3.10
+  Version: 3.11
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -196,7 +195,7 @@ EOF1;
 </table>
 <hr />
 <div id="help0" style='display:none;'>
-You use the plugin with the help of short tags. You create a post or page with a set of statements between the short tags <code>[ezquiz][ezquiz]</code>. The statements will be neatly rendered as a true or false quiz. Note that all the right answers are, by default, true.
+You use the plugin with the help of short tags. You create a post or page with a set of statements between the short tags <code>[ezquiz][/ezquiz]</code>. The statements will be neatly rendered as a true or false quiz. Note that all the right answers are, by default, true.
 </div>
 <div id="help1" style='display:none;'>
 Here is a simple example of the quiz (the one that generates the preview quiz on this admin page if you are using the Pro version):
