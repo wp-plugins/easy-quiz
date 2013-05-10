@@ -3,7 +3,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
-  Version: 3.11
+  Version: 3.20
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -18,17 +18,63 @@ if (class_exists("EzQuiz")) {
   die(__("<strong><em>Easy Quiz:</em></strong> Another version of this plugin is active.<br />Please deactivate it before activating <strong><em>Easy Quiz</em></strong>.", "easy-adsenser"));
 } else {
 
+  class EzQuestion {
+
+    var $type, $ques, $ans, $ansSel;
+
+    function EzQuestion($type) {
+      $this->type = $type;
+    }
+
+    function sanitize() {
+      if (empty($this->ansSel))
+        $this->type = 'tf';
+      if ($this->type == 'tf') {
+        $this->ans = trim($this->ans, "'");
+        if (empty($this->ans))
+          $this->ans = 'true';
+        $this->ansSel = array();
+      }
+    }
+
+    function render() {
+      $this->sanitize();
+      $question = sprintf("{ ques: '%s',", $this->ques);
+      if ($this->type == "tf")
+        $question .= sprintf("\nans: %s", $this->ans);
+      else {
+        $question .= sprintf("\nans: %s", $this->ans);
+        if (!empty($this->ansSel)) {
+          $question .= sprintf(",\nansSel: [");
+          foreach ($this->ansSel as $a) {
+            $question .= sprintf(" '%s', ", $a);
+          }
+          $question = rtrim($question, ', ') . ' ]';
+        }
+      }
+      $question .= " },\n";
+      return $question;
+    }
+
+  }
+
+
   class EzQuiz {
 
     var $plgURL;
-
+    var $title, $help, $showAns, $showAnsInfo, $allRandom, $questions;
     const shortCode = 'ezquiz';
 
     static $quizPage;
 
     function EzQuiz() { //constructor
       $this->plgURL = plugins_url(basename(dirname(__FILE__)));
-    }
+      $this->title = "Easy Quiz";
+      $this->help = "Choose True or False, or enter an answer. After you attempt a qustion, you can check your answer and proceed. At the end of the quiz, you will get your score.";
+      $this->showAns = 'false';
+      $this->showAnsInfo = 'false';
+      $this->allRandom = 'false';
+      }
 
     static function findShortCode($posts) {
       self::$quizPage = false;
@@ -61,28 +107,58 @@ if (class_exists("EzQuiz")) {
       wp_enqueue_script('ezQuizJS');
     }
 
-    function process($content) {
-      self::$quizPage = true;
-      $lines = explode("\n", strip_tags($content));
-      $lines[] = 'q: last' ; // to write out the last question
-      $question = '' ;
-      $answer = sprintf('ans: true') ;
-      $title = "title: \"Easy Quiz\",";
-      $help = "help: \"Choose True or False. At the end of the quiz, you will get your score.\",";
-      $quiz = '<div id="quizArea">
-<script type="text/javascript">
+    function render() {
+      $types = array();
+      $quiz = sprintf("<div id='quizArea'>
+<script type='text/javascript'>
 jQuery(document).ready(function($) {
 $( function($){
-var quiz = [';
-      $comma = $prevQuestion = '' ;
+var quiz = {\n");
+      foreach ($this->questions as $q) {
+        $q->sanitize();
+        $types[$q->type][] = $q;
+      }
+      foreach ($types as $type => $questions) {
+        $quiz .= sprintf("%s:\n[", $type);
+        foreach ($questions as $q) {
+          $quiz .= $q->render();
+        }
+        $quiz = rtrim($quiz, ",\n");
+        $quiz .= "],\n";
+      }
+      $quiz .= "\n};
+var options = {
+title: '{$this->title}',
+help: '{$this->help}',
+showAns: {$this->showAns},
+showAnsInfo: {$this->showAns},
+allRandom: {$this->allRandom},
+random: {$this->allRandom}
+};
+var lang = {
+quiz : { tfEqual:'' }
+};
+$( '#quizArea' ).jQuizMe( quiz, options, lang );
+});
+}(jQuery))
+</script>
+</div>
+<div style='text-align:center;font-size:x-small;'>{$this->credit}</div>
+";
+      return $quiz;
+    }
+
+    function process($content, $type) {
+      self::$quizPage = true;
+      $lines = explode("\n", strip_tags($content));
       foreach ($lines as $line) {
         if (empty($line))
           continue;
         @list($label, $rest) = explode(':', $line, 2);
-        $rest = trim($rest) ;
+        $rest = trim($rest);
         if (strlen($label) > 10) {
           $rest = $label;
-          $label = 'q' ;
+          $label = 'q';
         }
         $label = strtolower(trim($label));
         if (!empty($rest)) {
@@ -90,56 +166,45 @@ var quiz = [';
             case 'q':
             case 'ques' :
             case 'question':
-              if (!empty($question)) { // output the previous question
-                $quiz .= "$comma{ $question $answer }";
-                $comma = ',';
-                $question = '' ;
-                $answer = sprintf('ans: true') ;
-              }
-              $question = sprintf('ques: "%s",', $rest) ;
+              $q = new EzQuestion($type);
+              $q->ques = $rest;
+              $this->questions[] = $q;
               break;
             case 'a':
             case 'ans' :
             case 'answer':
-              $answer = sprintf('ans: %s', $rest) ;
+              $q->ans = $rest;
+              break;
+            case 'c':
+            case 'choice' :
+            case 'o':
+            case 'option':
+              $q->ansSel[] = $rest;
               break;
             case 'title' :
-              $title = sprintf('title: "%s",', $rest) ;
+              $this->title = $rest;
               break;
             case 'help' :
-              $help = sprintf('help: "%s",', $rest) ;
+              $this->help = $rest;
               break;
-            default:
+            case 'type' :
+              $type = $rest;
+              if ($type == 'multi' || $type == 'multipleChoice')
+                $type = 'multiList';
+              break;
           }
         }
         else {
           $rest = $line;
         }
-
       }
-      $quiz .= sprintf('];
-var options = {
-%s
-%s
-showAns: false,
-showAnsInfo: false,
-quizType: "tf"
-};
-var lang = {
-quiz : {
-tfEqual:""
-}
-};
-$( "#quizArea" ).jQuizMe( quiz, options, lang );
-});
-}(jQuery))
-</script>
-</div>', $title, $help);
+      $quiz = $this->render();
       return $quiz;
     }
 
     function displayQuiz($atts, $content = '') {
-      $quiz = $this->process($content);
+      extract(shortcode_atts(array("type" => "tf"), $atts));
+      $quiz = $this->process($content, $type);
       return $quiz;
     }
     function printAdminPage() {

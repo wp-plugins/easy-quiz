@@ -1,10 +1,10 @@
 === Easy Quiz ===
 Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-quiz
-Tags: quiz, survey, questions, education, jquery, jquizme, test, exam, quizzes
+Tags: quiz, survey, questions, jquery, jquizme, test, exam, quizzes, education
 Requires at least: 3.1
 Tested up to: 3.5
-Stable tag: 3.11
+Stable tag: 3.20
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -21,7 +21,7 @@ All the survey/quiz plugins I found in the directory looked too complex for my p
 2. Just cut and paste your questions on to your post.
 3. Results without server submit -- all the work is done on your readers' machine.
 4. View results at any point, and continue the quiz.
-5. Detailed help on the admin page. (WIP)
+5. Detailed help on the admin page.
 
 = Pro Version =
 
@@ -30,11 +30,11 @@ A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz fo
 1. Color customization to match your theme.
 2. More quiz types (Multiple Choice, Fill in The blanks etc.) as short code options
 3. Mix and match different types of questions: Multiple Choice, Fill in the Blanks, True or False etc. in the same quiz!
-4. Other quiz options as short code options.
+4. Other quiz options as short code options or on the admin page.
 
 == Upgrade Notice ==
 
-Documentation changes only.
+Porting other types of quizzes (Multiple Choice, Fill in The blanks etc.) to the lite version.
 
 == Installation ==
 
@@ -102,8 +102,13 @@ The label `q:` (or `ques:` or `question:`) is optional. It is to specify a quest
 
 The answer (with a label `a:` or `ans:` or `answer:`) is optional as well. If you don't give an answer, it is assumed to be *true*. In other words, the question statement is assumed to be true. The possible values are *true* or *false* (in lowercase).
 
+= How do I use other quiz types (Multiple Choice, Fill in The blanks etc.)? =
+
+Please see the FAQ section at the [plugin page](http://www.thulasidas.com/plugins/easy-quiz "Easy Quiz Pro Information Page").
+
 == Change Log ==
 
+* V3.20: Porting other types of quizzes (Multiple Choice, Fill in The blanks etc.) to the lite version. [May 10, 2013]
 * V3.11: Documentation changes only. [Apr 20, 2013]
 * V3.10: Correcting W3C markup validation errors on the admin page. [Apr 14, 2013]
 * V3.01: Minor fixes. [Mar 29, 2013]
