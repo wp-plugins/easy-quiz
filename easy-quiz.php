@@ -3,7 +3,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
-  Version: 3.20
+  Version: 3.30
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -62,7 +62,8 @@ if (class_exists("EzQuiz")) {
   class EzQuiz {
 
     var $plgURL;
-    var $title, $help, $showAns, $showAnsInfo, $allRandom, $questions;
+    var $title, $help, $showAns, $showAnsInfo, $allRandom, $questions, $credit;
+    var $options, $optionName;
     const shortCode = 'ezquiz';
 
     static $quizPage;
@@ -74,7 +75,13 @@ if (class_exists("EzQuiz")) {
       $this->showAns = 'false';
       $this->showAnsInfo = 'false';
       $this->allRandom = 'false';
+      $this->optionName = "ezQuiz";
+      $this->options = get_option($this->optionName);
+      if (empty($this->options)) {
+        $this->options = $this->mkDefaultOptions();
       }
+      $this->credit = "<a href='http://buy.thulasidas.com/easy-quiz' target='_blank'>Easy Quiz</a> by <a href='http://www.Thulasidas.com/' target='_blank' title='Unreal Blog proudly brings you Easy AdSense'>Unreal</a>";
+    }
 
     static function findShortCode($posts) {
       self::$quizPage = false;
@@ -143,8 +150,9 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
 }(jQuery))
 </script>
 </div>
-<div style='text-align:center;font-size:x-small;'>{$this->credit}</div>
 ";
+      if ($this->options['showCredit'])
+        $quiz .= "<div style='text-align:center;font-size:x-small;'>{$this->credit}</div>\n";
       return $quiz;
     }
 
@@ -207,15 +215,36 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
       $quiz = $this->process($content, $type);
       return $quiz;
     }
+    function mkDefaultOptions() {
+      $options = array();
+      $options['showCredit'] = false;
+      return $options;
+    }
+
+    function handleSubmits() {
+      if (empty($_POST))
+        return;
+      if (!empty($_POST['update_ezQuiz'])) {
+        $this->adminMsg = '<div class="updated"><p><strong>Options saved.</strong></p> </div>';
+        $this->options['showCredit'] = isset($_POST['showCredit']);
+        update_option($this->optionName, $this->options);
+      }
+    }
+
     function printAdminPage() {
       $plgName = 'easy-quiz' ;
+      $this->handleSubmits();
+      echo $this->adminMsg;
       @include(dirname (__FILE__).'/myPlugins.php');
       $ezIsPro = true;
+      if ($this->options['showCredit']) $showCredit = "checked='checked'";
+      else $showCredit = "";
 
       echo <<<EOF1
 <script type="text/javascript" src="{$this->plgURL}/wz_tooltip.js"></script>
 <div class="wrap" style="width:810px">
 <h2>Easy Quiz Help</h2>
+<form method="post" action='{$_SERVER["REQUEST_URI"]}'>
 <table>
 <tr><td style="width:40%">
 <!--  Help Info here -->
@@ -257,7 +286,14 @@ EOF1;
 <p>In the Pro version, this section will have color pickers and a quiz preview to customize your quiz display.<p>
 <button onclick="Tip('&lt;img src=&quot;{$this->plgURL}/screenshot-2.png&quot; /&gt;', WIDTH, 810, TITLE, 'Pro Version Screenshot',STICKY, 1, CLOSEBTN, true, FIX, [this, -350, -20])">Show Pro Screenshot</button>
 </td></tr>
+<tr><td colspan="3">
+<label for="showCredit" style="color:#e00;"><input type="checkbox" id="showCredit"  name="showCredit" $showCredit /> &nbsp; Show a tiny credit link at the bottom of the quiz. (Please consider showing it if you would like to support this plugin. Thanks!)</label>
+</td></tr>
 </table>
+<div class="submit">
+<input type="submit" name="update_ezQuiz" value="Save Changes" title="Save the changes as specified above" onmouseover="Tip('Save the changes as specified above',WIDTH, 240, TITLE, 'Save Changes')" onmouseout="UnTip()"/>
+</div>
+</form>
 <hr />
 <div id="help0" style='display:none;'>
 You use the plugin with the help of short tags. You create a post or page with a set of statements between the short tags <code>[ezquiz][/ezquiz]</code>. The statements will be neatly rendered as a true or false quiz. Note that all the right answers are, by default, true.

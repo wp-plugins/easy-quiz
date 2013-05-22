@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, jquery, jquizme, test, exam, quizzes, education
 Requires at least: 3.1
 Tested up to: 3.5
-Stable tag: 3.20
+Stable tag: 3.30
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -22,6 +22,7 @@ All the survey/quiz plugins I found in the directory looked too complex for my p
 3. Results without server submit -- all the work is done on your readers' machine.
 4. View results at any point, and continue the quiz.
 5. Detailed help on the admin page.
+6. Now available in your own language using machine translation curtsey of Google and Microsoft.
 
 = Pro Version =
 
@@ -108,6 +109,7 @@ Please see the FAQ section at the [plugin page](http://www.thulasidas.com/plugin
 
 == Change Log ==
 
+* V3.30: Now available in your own language using machine translation curtsey of Google and Microsoft. [May 22, 2013]
 * V3.20: Porting other types of quizzes (Multiple Choice, Fill in The blanks etc.) to the lite version. [May 10, 2013]
 * V3.11: Documentation changes only. [Apr 20, 2013]
 * V3.10: Correcting W3C markup validation errors on the admin page. [Apr 14, 2013]
