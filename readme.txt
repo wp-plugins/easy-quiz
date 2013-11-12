@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, jquery, jquizme, test, exam, quizzes, education
 Requires at least: 3.1
-Tested up to: 3.5
-Stable tag: 3.30
+Tested up to: 3.7
+Stable tag: 3.40
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -35,7 +35,7 @@ A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz fo
 
 == Upgrade Notice ==
 
-Porting other types of quizzes (Multiple Choice, Fill in The blanks etc.) to the lite version.
+Compatibility checks for WordPress V3.7. Moving the jQuizMe script to the footer.
 
 == Installation ==
 
@@ -109,6 +109,7 @@ Please see the FAQ section at the [plugin page](http://www.thulasidas.com/plugin
 
 == Change Log ==
 
+* V3.40: Compatibility checks for WordPress V3.7. Moving the jQuizMe script to the footer. [Nov 12, 2013]
 * V3.30: Now available in your own language using machine translation curtsey of Google and Microsoft. [May 22, 2013]
 * V3.20: Porting other types of quizzes (Multiple Choice, Fill in The blanks etc.) to the lite version. [May 10, 2013]
 * V3.11: Documentation changes only. [Apr 20, 2013]
