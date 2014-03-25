@@ -1,22 +1,36 @@
 <?php
+
 /*
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
-  Version: 3.50
+  Version: 4.00
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
 
 /*
-  License: GPL2 or later
-  Copyright (C) 2008 www.thulasidas.com
+  Copyright (C) 2008 www.ads-ez.com
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 if (class_exists("EzQuiz")) {
   // Another version is probably installed. Ask the user to deactivate it.
   die(__("<strong><em>Easy Quiz:</em></strong> Another version of this plugin is active.<br />Please deactivate it before activating <strong><em>Easy Quiz</em></strong>.", "easy-adsenser"));
-} else {
+}
+else {
 
   class EzQuestion {
 
@@ -27,12 +41,14 @@ if (class_exists("EzQuiz")) {
     }
 
     function sanitize() {
-      if (empty($this->ansSel))
+      if (empty($this->ansSel)) {
         $this->type = 'tf';
+      }
       if ($this->type == 'tf') {
         $this->ans = trim($this->ans, "'");
-        if (empty($this->ans))
+        if (empty($this->ans)) {
           $this->ans = 'true';
+        }
         $this->ansSel = array();
       }
     }
@@ -40,8 +56,9 @@ if (class_exists("EzQuiz")) {
     function render() {
       $this->sanitize();
       $question = sprintf("{ ques: '%s',", $this->ques);
-      if ($this->type == "tf")
+      if ($this->type == "tf") {
         $question .= sprintf("\nans: %s", $this->ans);
+      }
       else {
         $question .= sprintf("\nans: %s", $this->ans);
         if (!empty($this->ansSel)) {
@@ -58,18 +75,21 @@ if (class_exists("EzQuiz")) {
 
   }
 
-
   class EzQuiz {
 
-    var $plgURL;
     var $title, $help, $showAns, $showAnsInfo, $allRandom, $questions, $credit;
     var $options, $optionName;
+    var $slug, $domain, $plgDir, $plgURL, $ezTran, $ezAdmin, $myPlugins, $isPro;
+
+    private $adminMsg = '';
+
     const shortCode = 'ezquiz';
 
     static $quizPage;
 
     function EzQuiz() { //constructor
-      $this->plgURL = plugins_url(basename(dirname(__FILE__)));
+      $this->plgDir = dirname(__FILE__);
+      $this->plgURL = plugin_dir_url(__FILE__);
       $this->title = "Easy Quiz";
       $this->help = "Choose True or False, or enter an answer. After you attempt a qustion, you can check your answer and proceed. At the end of the quiz, you will get your score.";
       $this->showAns = 'false';
@@ -81,12 +101,20 @@ if (class_exists("EzQuiz")) {
         $this->options = $this->mkDefaultOptions();
       }
       $this->credit = "<a href='http://buy.thulasidas.com/easy-quiz' target='_blank'>Easy Quiz</a> by <a href='http://www.Thulasidas.com/' target='_blank' title='Unreal Blog proudly brings you Easy AdSense'>Unreal</a>";
+      if (is_admin()) {
+        require_once($this->plgDir . '/EzTran.php');
+        $this->domain = $this->slug = 'easy-quiz';
+        $this->ezTran = new EzTran(__FILE__, "Easy Quiz", $this->domain);
+        $this->ezTran->setLang();
+      }
+      $this->isPro = true;
     }
 
     static function findShortCode($posts) {
       self::$quizPage = false;
-      if (empty($posts))
+      if (empty($posts)) {
         return $posts;
+      }
       foreach ($posts as $post) {
         if (stripos($post->post_content, self::shortCode) !== false) {
           self::$quizPage = true;
@@ -97,19 +125,23 @@ if (class_exists("EzQuiz")) {
     }
 
     function ezqStyles() {
-      if (!self::$quizPage)
+      if (!self::$quizPage) {
         return;
-      if (is_admin())
+      }
+      if (is_admin()) {
         return;
+      }
       wp_register_style('ezQuizCSS', "{$this->plgURL}/jQuizMe.css");
       wp_enqueue_style('ezQuizCSS');
     }
 
     function ezqScripts() {
-      if (!self::$quizPage)
+      if (!self::$quizPage) {
         return;
-      if (is_admin())
+      }
+      if (is_admin()) {
         return;
+      }
       wp_register_script('ezQuizJS', "{$this->plgURL}/jQuizMe.js", array('jquery'), false, true);
       wp_enqueue_script('ezQuizJS');
     }
@@ -152,8 +184,9 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
 </script>
 </div>
 ";
-      if ($this->options['showCredit'])
+      if ($this->options['showCredit']) {
         $quiz .= "<div style='text-align:center;font-size:x-small;'>{$this->credit}</div>\n";
+      }
       return $quiz;
     }
 
@@ -161,8 +194,9 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
       self::$quizPage = true;
       $lines = explode("\n", strip_tags($content));
       foreach ($lines as $line) {
-        if (empty($line))
+        if (empty($line)) {
           continue;
+        }
         @list($label, $rest) = explode(':', $line, 2);
         $rest = trim($rest);
         if (strlen($label) > 10) {
@@ -198,8 +232,9 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
               break;
             case 'type' :
               $type = $rest;
-              if ($type == 'multi' || $type == 'multipleChoice')
+              if ($type == 'multi' || $type == 'multipleChoice') {
                 $type = 'multiList';
+              }
               break;
           }
         }
@@ -216,6 +251,7 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
       $quiz = $this->process($content, $type);
       return $quiz;
     }
+
     function mkDefaultOptions() {
       $options = array();
       $options['showCredit'] = false;
@@ -223,8 +259,9 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
     }
 
     function handleSubmits() {
-      if (empty($_POST))
+      if (empty($_POST)) {
         return;
+      }
       if (!empty($_POST['update_ezQuiz'])) {
         $this->adminMsg = '<div class="updated"><p><strong>Options saved.</strong></p> </div>';
         $this->options['showCredit'] = isset($_POST['showCredit']);
@@ -233,19 +270,33 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
     }
 
     function printAdminPage() {
-      $plgName = 'easy-quiz' ;
+// if translating, print translation interface
+      if ($this->ezTran->printAdminPage()) {
+        return;
+      }
+      require_once($this->plgDir . '/myPlugins.php');
+      $slug = $this->slug;
+      $plgURL = $this->plgURL;
+      $plg = $this->myPlugins[$slug];
+      require_once($this->plgDir . '/EzAdmin.php');
+      $this->ezAdmin = new EzAdmin($plg, $slug, $plgURL);
+      $this->ezAdmin->domain = $this->domain;
+      $ez = $this->ezAdmin;
+
       $this->handleSubmits();
       echo $this->adminMsg;
-      @include(dirname (__FILE__).'/myPlugins.php');
-      $ezIsPro = true;
-      if ($this->options['showCredit']) $showCredit = "checked='checked'";
-      else $showCredit = "";
+      if ($this->options['showCredit']) {
+        $showCredit = "checked='checked'";
+      }
+      else {
+        $showCredit = "";
+      }
 
       echo <<<EOF1
 <script type="text/javascript" src="{$this->plgURL}/wz_tooltip.js"></script>
-<div class="wrap" style="width:810px">
+<div class="wrap" style="width:850px">
 <h2>Easy Quiz Help</h2>
-<form method="post" action='{$_SERVER["REQUEST_URI"]}'>
+<form method="post" action=''>
 <table>
 <tr><td style="width:40%">
 <!--  Help Info here -->
@@ -278,7 +329,7 @@ How can I change the colors?
 </ul>
 </td>
 EOF1;
-      @include (dirname (__FILE__).'/head-text.php');
+      include ($this->plgDir . '/head-text.php');
       echo <<<EOF2
 </tr>
 <tr>
@@ -353,13 +404,14 @@ If you agree with these statements, you are a good man.</code></pre>
 <p>If you prefer to stay with the Lite version, you can change the quiz colors by editing the style file <code>jQuizMe.css</code> in the plugin folder.</p>
 </div>
 EOF2;
-      echo '<div style="background-color:#fcf;padding:5px;border: solid 1px;margin:5px;">' ;
-      @include (dirname (__FILE__).'/support.php');
-      echo '</div>' ;
-      echo '<div style="background-color:#cff;padding:5px;border: solid 1px;margin:5px;padding-bottom:15px;">' ;
-      include (dirname (__FILE__).'/why-pro.php');
-      echo '</div>' ;
-      @include (dirname (__FILE__).'/tail-text.php');
+      echo "<form method='post'>";
+      $this->ezTran->renderTranslator();
+      echo "</form><br />";
+      echo '<div style="background-color:#fcf;padding:5px;border: solid 1px;margin:5px;">';
+      include ($this->plgDir . '/support.php');
+      echo '</div>';
+      include ($this->plgDir . '/why-pro.php');
+      include ($this->plgDir . '/tail-text.php');
       echo <<<EOF3
 <table>
 <tr><th scope="row">Credits</th></tr>
@@ -381,7 +433,9 @@ It also uses the excellent Javascript/DHTML tooltips by <a href="http://www.walt
 </div>
 EOF3;
     }
+
   }
+
 } //End Class EzQuiz
 
 if (class_exists("EzQuiz")) {
@@ -392,14 +446,15 @@ if (class_exists("EzQuiz")) {
     add_action('wp_enqueue_scripts', array($ezQuiz, 'ezqScripts'));
     add_filter('the_posts', array("EzQuiz", "findShortCode"));
     if (is_admin()) {
+
       function ezQuiz_ap() {
-        global $ezQuiz ;
+        global $ezQuiz;
         if (function_exists('add_options_page')) {
-          $mName = 'Easy Quiz'  ;
-          add_options_page($mName, $mName, 'activate_plugins', basename(__FILE__),
-            array($ezQuiz, 'printAdminPage'));
+          $mName = 'Easy Quiz';
+          add_options_page($mName, $mName, 'activate_plugins', basename(__FILE__), array($ezQuiz, 'printAdminPage'));
         }
       }
+
       add_action('admin_menu', 'ezQuiz_ap');
     }
   }
