@@ -4,7 +4,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
-  Version: 4.01
+  Version: 4.10
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -27,8 +27,10 @@
  */
 
 if (class_exists("EzQuiz")) {
-  // Another version is probably installed. Ask the user to deactivate it.
-  die(__("<strong><em>Easy Quiz:</em></strong> Another version of this plugin is active.<br />Please deactivate it before activating <strong><em>Easy Quiz</em></strong>.", "easy-adsenser"));
+  $plg = "Easy Quiz Lite";
+  $lite = plugin_basename(__FILE__);
+  include_once('ezDenyLite.php');
+  ezDenyLite($plg, $lite);
 }
 else {
 
@@ -79,8 +81,7 @@ else {
 
     var $title, $help, $showAns, $showAnsInfo, $allRandom, $questions, $credit;
     var $options, $optionName;
-    var $slug, $domain, $plgDir, $plgURL, $ezTran, $ezAdmin, $myPlugins, $isPro;
-
+    var $slug, $domain, $plgDir, $plgURL, $ezTran, $ezAdmin, $myPlugins;
     private $adminMsg = '';
 
     const shortCode = 'ezquiz';
@@ -107,7 +108,6 @@ else {
         $this->ezTran = new EzTran(__FILE__, "Easy Quiz", $this->domain);
         $this->ezTran->setLang();
       }
-      $this->isPro = true;
     }
 
     static function findShortCode($posts) {
@@ -274,7 +274,7 @@ $( '#quizArea' ).jQuizMe( quiz, options, lang );
       if ($this->ezTran->printAdminPage()) {
         return;
       }
-      require_once($this->plgDir . '/myPlugins.php');
+      require($this->plgDir . '/myPlugins.php');
       $slug = $this->slug;
       $plgURL = $this->plgURL;
       $plg = $this->myPlugins[$slug];
@@ -404,13 +404,11 @@ If you agree with these statements, you are a good man.</code></pre>
 <p>If you prefer to stay with the Lite version, you can change the quiz colors by editing the style file <code>jQuizMe.css</code> in the plugin folder.</p>
 </div>
 EOF2;
-      echo "<form method='post'>";
-      $this->ezTran->renderTranslator();
-      echo "</form><br />";
-      echo '<div style="background-color:#fcf;padding:5px;border: solid 1px;margin:5px;">';
-      include ($this->plgDir . '/support.php');
-      echo '</div>';
-      include ($this->plgDir . '/why-pro.php');
+//      echo "<form method='post'>";
+//      $this->ezTran->renderTranslator();
+//      echo "</form><br />";
+      $ez->renderSupport();
+      $ez->renderWhyPro();
       include ($this->plgDir . '/tail-text.php');
       echo <<<EOF3
 <table>
@@ -447,12 +445,14 @@ if (class_exists("EzQuiz")) {
     add_filter('the_posts', array("EzQuiz", "findShortCode"));
     if (is_admin()) {
 
-      function ezQuiz_ap() {
-        global $ezQuiz;
-        if (function_exists('add_options_page')) {
+      if (!function_exists('ezQuiz_ap')) {
+
+        function ezQuiz_ap() {
+          global $ezQuiz;
           $mName = 'Easy Quiz';
           add_options_page($mName, $mName, 'activate_plugins', basename(__FILE__), array($ezQuiz, 'printAdminPage'));
         }
+
       }
 
       add_action('admin_menu', 'ezQuiz_ap');
