@@ -4,7 +4,7 @@
   Plugin Name: Easy Quiz
   Plugin URI: http://www.thulasidas.com/plugins/easy-quiz
   Description: <em>Lite Version</em>: Easiest Quiz Plugin ever. No complicated setup, no server load or submit, just a shortcode on a page to create jQuery quiz!
-  Version: 4.10
+  Version: 4.20
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -336,7 +336,7 @@ EOF1;
 <td colspan="3" style="text-align:center;">
 <hr />
 <p>In the Pro version, this section will have color pickers and a quiz preview to customize your quiz display.<p>
-<button onclick="Tip('&lt;img src=&quot;{$this->plgURL}/screenshot-2.png&quot; /&gt;', WIDTH, 810, TITLE, 'Pro Version Screenshot',STICKY, 1, CLOSEBTN, true, FIX, [this, -350, -20])">Show Pro Screenshot</button>
+<a href='#' onclick="Tip('&lt;img src=&quot;{$this->plgURL}/screenshot-2.png&quot; /&gt;', WIDTH, 810, TITLE, 'Pro Version Screenshot',STICKY, 1, CLOSEBTN, true, FIX, [this, -350, -20])">Show Pro Screenshot</a>
 </td></tr>
 <tr><td colspan="3">
 <label for="showCredit" style="color:#e00;"><input type="checkbox" id="showCredit"  name="showCredit" $showCredit /> &nbsp; Show a tiny credit link at the bottom of the quiz. (Please consider showing it if you would like to support this plugin. Thanks!)</label>
