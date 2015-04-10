@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, jquery, jquizme, test, exam, quizzes, education
 Requires at least: 3.1
 Tested up to: 4.1
-Stable tag: 4.30
+Stable tag: 4.40
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -14,6 +14,10 @@ A quick and easy quiz plugin to present a set of questions to your reader and le
 *Easy Quiz* is a quick and easy quiz plugin to present a set of questions to your reader and let them check the answers. The answers and the statistics are *not* stored in your database and the purpose of the quiz is purely your reader's entertainment. It creates quizzes vaguely similar to the [BBC Weekly Quiz](http://www.bbc.co.uk/news/magazine-19511527 "BBC Quiz").
 
 All the survey/quiz plugins I found in the directory looked too complex for my purpose. They were good, but were geared toward serious purposes like collecting information, education and tracking etc.  All I wanted to do was to create an interactive page for my readers to take a test for their own entertainment. I didn't want to store their info on my server, give statistical analysis etc. So I wrote this plugin based on the excellent jQuery script called [jQuizMe](http://code.google.com/p/jquizme/ "jQuizMe code page").
+
+= Live Demo =
+
+**If you would like to see the plugin action, check [this quiz](http://www.thulasidas.com/do-you-believe-in-god/ "Will tell you if you believe in God!").**
 
 = Features =
 
@@ -35,7 +39,7 @@ A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz fo
 
 == Upgrade Notice ==
 
-Compatibility with WP4.1.
+Documentation and admin page changes.
 
 == Installation ==
 
@@ -151,6 +155,7 @@ If you agree with these statements, you are a good man.</code>`
 
 == Change Log ==
 
+* V4.40: Documentation and admin page changes. [April 9, 2015]
 * V4.30: Compatibility with WP4.1. [Jan 8, 2015]
 * V4.20: Minor fixes. Compatibility with WordPress V4.0. [Sep 8, 2014]
 * V4.10: Minor fixes. Compatibility with WordPress V3.9. [May 7, 2014]
