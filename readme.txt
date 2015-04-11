@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, jquery, jquizme, test, exam, quizzes, education
 Requires at least: 3.1
 Tested up to: 4.1
-Stable tag: 4.41
+Stable tag: 4.42
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
