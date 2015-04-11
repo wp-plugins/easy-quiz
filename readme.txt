@@ -17,7 +17,7 @@ All the survey/quiz plugins I found in the directory looked too complex for my p
 
 = Live Demo =
 
-**If you would like to see the plugin action, visit [this quiz](http://www.thulasidas.com/do-you-believe-in-god/ "Will tell you if you believe in God!"). You can even play with its admin interface at the [live demo site](http://demo.thulasidas.com/easy-quiz "Play with Easy Quiz Admin Interface")**
+**If you would like to see the plugin action, visit [this quiz](http://www.thulasidas.com/do-you-believe-in-god/ "Will tell you if you believe in God!"). You can even play with its admin interface at the [live demo site](http://demo.thulasidas.com/easy-quiz "Play with Easy Quiz Admin Interface").**
 
 = Features =
 
