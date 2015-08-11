@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-quiz
 Tags: quiz, survey, questions, jquery, jquizme, test, exam, quizzes, education
 Requires at least: 3.1
-Tested up to: 4.2
-Stable tag: 4.50
+Tested up to: 4.3
+Stable tag: 4.60
 License: GPLv2 or later
 
 A quick and easy quiz plugin to present a set of questions to your reader and let them check the answers.
@@ -39,13 +39,19 @@ A [pro version](http://buy.thulasidas.com/easy-quiz "Pro Version of Eazy Quiz fo
 
 == Upgrade Notice ==
 
-Compatibility with WordPress 4.2.
+Compatibility with WordPress 4.3.
 
 == Installation ==
 
-You can install it using the WordPress Plugins -> Add New interface.
+= Searching =
 
-Or,
+The easiest way to install this plugin is to use the WordPress Admin interface. Go to your admin dashboard, find the "Plugins" menu, and click on "Add New". Search for this plugin and click on "Install Now" and follow the WordPress instructions.
+
+= Uploading =
+
+If you want to download it and manually install, you can again use the WordPress dashboard interface. First download the plugin zip file to your local computer. Then go to your admin dashboard, find the "Plugins" menu, and click on "Add New". After clicking on the "Add New" menu item as above, click on "Upload" (below the title "Install Plugins" near the top). Browse for your downloaded zip file, upload it and activate the plugin.
+
+= FTP =
 
 1. Upload the Easy Quiz plugin (the whole `easy-quiz` folder) to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in your blog.
@@ -155,6 +161,7 @@ If you agree with these statements, you are a good man.</code>`
 
 == Change Log ==
 
+* V4.60: Compatibility with WordPress 4.3. [Aug 10, 2015]
 * V4.50: Compatibility with WordPress 4.2. [April 25, 2015]
 * V4.41: Launching a demo site. [April 11, 2015]
 * V4.40: Documentation and admin page changes. [April 9, 2015]
